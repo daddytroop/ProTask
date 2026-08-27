@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:;" />
+<title>ProTask Mini</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  html, body { background: transparent; overflow: hidden; }
+  body { display: flex; align-items: center; justify-content: center; height: 100vh; }
+  .mini-wrap {
+    -webkit-app-region: drag;
+    display: flex; align-items: center; gap: 2px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 999px;
+    padding: 6px 6px 6px 10px; backdrop-filter: blur(18px);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.4);
+  }
+  .mini-restore {
+    -webkit-app-region: no-drag;
+    width: 24px; height: 24px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(255,255,255,0.08); color: var(--text); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-left: 6px; transition: background .15s ease, color .15s ease;
+  }
+  .mini-restore:hover { background: var(--accent); color: #08080c; }
+</style>
+</head>
+<body>
+  <div class="mini-wrap" id="mini-wrap">
+    <div class="qs-item" data-metric="cpu" title="CPU usage">
+      <canvas class="qs-ring" data-ring="cpu" width="28" height="28"></canvas>
+      <div class="qs-text"><span class="qs-label">CPU</span><span class="qs-value" id="qs-cpu">0%</span></div>
+    </div>
+    <div class="qs-div"></div>
+    <div class="qs-item" data-metric="mem" title="Memory usage">
+      <canvas class="qs-ring" data-ring="mem" width="28" height="28"></canvas>
+      <div class="qs-text"><span class="qs-label">MEM</span><span class="qs-value" id="qs-mem">0%</span></div>
+    </div>
+    <div class="qs-div"></div>
+    <div class="qs-item" data-metric="net" title="Network throughput">
+      <canvas class="qs-ring" data-ring="net" width="28" height="28"></canvas>
+      <div class="qs-text"><span class="qs-label">NET</span><span class="qs-value" id="qs-net">0 KB/s</span></div>
+    </div>
+    <button class="mini-restore" id="mini-restore" title="Restore ProTask">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 14v6h6M20 10V4h-6M20 4l-7 7M4 20l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <script src="mini.js"></script>
+</body>
+</html>
